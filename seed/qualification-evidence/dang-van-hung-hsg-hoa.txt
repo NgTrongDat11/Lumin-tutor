@@ -1,0 +1,13 @@
+LUMIN DEMO QUALIFICATION EVIDENCE
+
+Tutor: Dang Van Hung
+Document type: Certificate
+Title: Chung nhan giao vien day hoc sinh gioi Hoa
+Issuer: So Giao duc va Dao tao Ha Noi
+Serial number: HN-DOE-CHEM-2019-0788
+Issued date: 2019-08-10
+Verification status in seed: REJECTED
+
+Summary:
+Minh chung demo bi tu choi vi ban scan thieu trang xac nhan. Dung de test
+review note va trang thai REJECTED trong UI.

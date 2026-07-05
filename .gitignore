@@ -1,0 +1,133 @@
+# ==========================================
+# LUMIN TUTOR RECOMMENDATION - GITIGNORE
+# ==========================================
+
+# ------------------------------------------
+# Environment & Secrets (VÔ CÙNG QUAN TRỌNG)
+# ------------------------------------------
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+*.pem
+*.key
+*.cert
+# KHÔNG ignore file .env.example để người khác biết cấu trúc biến môi trường
+!.env.example
+
+# ------------------------------------------
+# Python (Backend & AI Recommendation)
+# ------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Python Virtual Environments (uv, virtualenv, poetry, pipenv)
+.venv/
+venv/
+ENV/
+env/
+.uv/
+.uv-cache/
+.python-version
+
+# Python testing & linting
+.cache/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.tox/
+.noserc
+.pylintrc
+
+# ------------------------------------------
+# Node.js & React Frontend (Vite)
+# ------------------------------------------
+node_modules/
+/frontend/dist/
+/frontend/dist-ssr/
+/frontend/out/
+frontend/node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# ------------------------------------------
+# Docker & Local Databases
+# ------------------------------------------
+# Bỏ qua thư mục lưu dữ liệu database local tránh commit hàng GB data
+pgdata/
+db-data/
+postgres-data/
+docker-volumes/
+backend/.backups/
+
+# ------------------------------------------
+# IDEs & Editors (VS Code, PyCharm, WebStorm...)
+# ------------------------------------------
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.swo
+*~
+
+# ------------------------------------------
+# OS specific files
+# ------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ------------------------------------------
+# Local workspace metadata & archived files
+# ------------------------------------------
+.agents/
+.codex/
+.codex-tmp-*/
+.qa/
+.tmp/
+archived/
+keys/
+*.rar
+*~[0-9]*

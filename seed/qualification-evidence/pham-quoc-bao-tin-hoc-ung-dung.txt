@@ -1,0 +1,13 @@
+LUMIN DEMO QUALIFICATION EVIDENCE
+
+Tutor: Pham Quoc Bao
+Document type: Certificate
+Title: Chung chi Tin hoc ung dung
+Issuer: Trung tam Tin hoc Demo
+Serial number: IT-DEMO-2023-1190
+Issued date: 2023-01-14
+Verification status in seed: REJECTED
+
+Summary:
+Minh chung demo bi tu choi vi khong lien quan truc tiep den mon dang ky day.
+Dung cho luong ho so REJECTED va ghi chu cua staff.

@@ -1,0 +1,100 @@
+name: Deploy Backend to VPS
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend-deploy.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Export locked backend dependencies
+        uses: astral-sh/setup-uv@v8.2.0
+        with:
+          enable-cache: true
+          cache-dependency-glob: backend/uv.lock
+
+      - name: Generate deployment requirements
+        run: >
+          uv export
+          --directory backend
+          --frozen
+          --no-dev
+          --no-emit-project
+          --format requirements-txt
+          --output-file requirements.deploy.txt
+
+      - name: Upload backend to VPS
+        uses: appleboy/scp-action@v1.0.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: backend
+          target: /var/www/lumin-backend
+          overwrite: true
+
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.2.5
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -euo pipefail
+
+            cd /var/www/lumin-backend/backend
+
+            if [ ! -f .env ]; then
+              echo "Missing /var/www/lumin-backend/backend/.env"
+              exit 1
+            fi
+
+            if ! dpkg -s python3-venv >/dev/null 2>&1; then
+              apt-get update
+              apt-get install -y python3-venv
+            fi
+
+            if [ ! -x venv/bin/python ]; then
+              python3 -m venv venv
+            fi
+
+            venv/bin/python -m pip install --upgrade pip
+            venv/bin/python -m pip install --require-hashes -r requirements.deploy.txt
+
+            cat > /etc/systemd/system/lumin-backend.service <<'SERVICE'
+            [Unit]
+            Description=Lumin Backend FastAPI Application
+            After=network.target
+
+            [Service]
+            User=root
+            Group=root
+            WorkingDirectory=/var/www/lumin-backend/backend
+            Environment="PATH=/var/www/lumin-backend/backend/venv/bin"
+            ExecStart=/var/www/lumin-backend/backend/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
+            Restart=always
+            RestartSec=5
+
+            [Install]
+            WantedBy=multi-user.target
+            SERVICE
+
+            systemctl daemon-reload
+            systemctl enable lumin-backend
+            systemctl restart lumin-backend
+            systemctl is-active --quiet lumin-backend
+
+            curl --fail --silent --show-error --retry 10 --retry-delay 2 \
+              --retry-connrefused \
+              http://127.0.0.1:8000/docs >/dev/null
+
+            echo "Deployment successful!"

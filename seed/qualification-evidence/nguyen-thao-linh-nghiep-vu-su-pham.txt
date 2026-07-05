@@ -1,0 +1,12 @@
+LUMIN DEMO QUALIFICATION EVIDENCE
+
+Tutor: Nguyen Thao Linh
+Document type: Certificate
+Title: Chung chi Nghiep vu Su pham
+Issuer: Trung tam Boi duong Nha giao
+Serial number: PED-CERT-2025-0142
+Issued date: 2025-04-09
+Verification status in seed: PENDING
+
+Summary:
+Chung chi demo dang cho staff duyet, dung cho ho so PENDING_REVIEW.

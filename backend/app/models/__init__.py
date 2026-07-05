@@ -1,0 +1,29 @@
+"""Import all models so Alembic and Base.metadata can discover them."""
+
+from app.models.base import Base  # noqa: F401
+from app.models.user_account import UserAccount  # noqa: F401
+from app.models.tutor_profile import TutorProfile  # noqa: F401
+from app.models.subject import Subject  # noqa: F401
+from app.models.tutor_qualification import TutorQualification  # noqa: F401
+from app.models.tutor_subject import TutorSubject  # noqa: F401
+from app.models.learning_need import LearningNeed  # noqa: F401
+from app.models.learning_need_schedule import LearningNeedSchedule  # noqa: F401
+from app.models.private_tutoring_request import PrivateTutoringRequest  # noqa: F401
+from app.models.course_class import CourseClass  # noqa: F401
+from app.models.tutor_application import TutorApplication  # noqa: F401
+from app.models.class_registration import ClassRegistration  # noqa: F401
+from app.models.tutor_availability import TutorAvailability  # noqa: F401
+from app.models.schedule_pattern import SchedulePattern  # noqa: F401
+from app.models.learning_session import LearningSession  # noqa: F401
+from app.models.schedule_block import ScheduleBlock  # noqa: F401
+from app.models.teaching_contract import TeachingContract  # noqa: F401
+from app.models.payment import Payment  # noqa: F401
+from app.models.review import Review  # noqa: F401
+from app.models.recommendation_event import RecommendationEvent  # noqa: F401
+from app.models.profile_embedding import ProfileEmbedding  # noqa: F401
+from app.models.message_thread import MessageThread  # noqa: F401
+from app.models.message_thread_participant import MessageThreadParticipant  # noqa: F401
+from app.models.message import Message  # noqa: F401
+from app.models.audit_log import AuditLog  # noqa: F401
+from app.models.notification import Notification  # noqa: F401
+from app.models.system_setting import SystemSetting  # noqa: F401
